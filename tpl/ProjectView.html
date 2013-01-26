@@ -1,0 +1,27 @@
+<form>
+  <fieldset>
+    <legend>
+      <@= id? code: 'New Project'@>
+    </legend>
+    <label>Project code</label>
+    <@ if (id) {@>
+    <input type="text" name="code" placeholder="example: PRJ-01" value="<@= code @>"/>
+    <@ }@>
+    <span class="help-block">Unique project identifier</span>
+    <label>Project name</label>
+    <input type="text" name="name" value="<@= name @>"/>
+    <label>Project description</label>
+    <textarea rows="6" name="description" value="<@= description @>"></textarea>
+    <div>
+      <a href="#" class="btn btn-primary save">Create</a>
+      <a href="#projects">Cancel</a>
+    </div>
+  </fieldset>
+</form>
+<div class="row status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Success!</b> Wine saved successfully
+        </div>
+    </div>
+</div>

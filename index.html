@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Redmoon</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="header"></div>
+<div class="container">
+  <div class="row">
+      <!--Body content-->
+      <div id="content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript -->
+<script src="lib/jquery.min.js"></script>
+<script src="lib/underscore.js"></script>
+<script type="text/javascript">
+_.templateSettings = {
+    interpolate: /\<\@\=(.+?)\@\>/gim,
+    evaluate: /\<\@([\s\S]+?)\@\>/gim,
+    escape: /\<\@\-(.+?)\@\>/gim
+};
+</script>
+<script src="lib/backbone.js"></script>
+<script src="lib/bootstrap.js"></script>
+<script src="lib/backbone.localStorage.js"></script>
+<script src="js/utils.js"></script> 
+
+<script src="js/models/project.js"></script>
+
+<script src="js/views/paginator.js"></script>
+<script src="js/views/header.js"></script>
+<script src="js/views/home.js"></script>
+<script src="js/views/project.js"></script>
+<script src="js/views/projectslist.js"></script>
+<script src="js/redmoon-app.js"></script>   
+
+</body>
+</html>
