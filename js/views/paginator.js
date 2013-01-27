@@ -1,4 +1,4 @@
-window.Paginator = Backbone.View.extend({
+window.Paginator = Backbone.DisposableView.extend({
 
     className: "pagination pagination-centered",
 
@@ -22,5 +22,9 @@ window.Paginator = Backbone.View.extend({
         }
 
         return this;
+    },
+
+    dispose: function() {
+        this.model.unbind("reset", this.render);
     }
 });

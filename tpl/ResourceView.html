@@ -1,0 +1,46 @@
+<form>
+  <fieldset>
+    <legend>
+      <@= id? firstName + ' ' + lastName + ' - ' + code: 'New Resource'@>
+    </legend>
+    <@ if (!id) { @>
+    <label>Code</label>
+    <input type="text" name="code" value="<@= code @>"/>
+    <span class="help-block">Unique resource identifier</span>
+    <@ } @>
+    <label>First name</label>
+    <input type="text" name="firstName" value="<@= firstName @>"/>
+    <label>Last name</label>
+    <input type="text" name="lastName" value="<@= lastName @>"/>
+    <label>Cost per day</label>
+    <div>
+      <a href="#" class="btn btn-primary save">Save</a>
+      <@ if (id) { @>
+      <a href="#confirmDelete" class="btn" data-toggle="modal">Delete</a>
+      <@ } @>
+      <a href="#resources">Cancel</a>
+    </div>
+  </fieldset>
+</form>
+
+<div class="row status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Success!</b> Wine saved successfully
+        </div>
+    </div>
+</div>
+
+<div id="confirmDelete" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Delete Resource</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Ooops! No...</button>
+    <button class="btn btn-danger delete">Yes</button>
+  </div>
+</div>

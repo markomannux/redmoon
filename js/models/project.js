@@ -12,6 +12,9 @@ window.Project = Backbone.Model.extend({
       return value.length > 0 ? {isValid: true} : {isValid: false, message: "You must enter a name"};
     };
 
+    this.validators.budget = function (value) {
+      return value > 0 ? {isValid: true} : {isValid: false, message: "You must enter a valid budget"};
+    };
   },
 
 validateItem: function (key) {
@@ -35,10 +38,11 @@ validateItem: function (key) {
     return _.size(messages) > 0 ? {isValid: false, messages: messages} : {isValid: true};
   },
 
-
   defaults: {
+    id: undefined,
     code: "",
     name: "",
+    budget: 0,
     description: "",
   },
 

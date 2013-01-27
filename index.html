@@ -3,15 +3,16 @@
 <head>
 <title>Redmoon</title>
 <link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/docs.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
 <div class="header"></div>
 <div class="container">
   <div class="row">
       <!--Body content-->
-      <div id="content"></div>
+      <div id="content" class="span12"></div>
     </div>
   </div>
 </div>
@@ -32,12 +33,17 @@ _.templateSettings = {
 <script src="js/utils.js"></script> 
 
 <script src="js/models/project.js"></script>
+<script src="js/models/resource.js"></script>
 
+<script src="js/views/disposableview.js"></script>
 <script src="js/views/paginator.js"></script>
 <script src="js/views/header.js"></script>
 <script src="js/views/home.js"></script>
 <script src="js/views/project.js"></script>
 <script src="js/views/projectslist.js"></script>
+<script src="js/views/resource.js"></script>
+<script src="js/views/resourceslist.js"></script>
+<script src="js/views/assignresources.js"></script>
 <script src="js/redmoon-app.js"></script>   
 
 </body>

@@ -1,4 +1,4 @@
-window.HomeView = Backbone.View.extend({
+window.HomeView = Backbone.DisposableView.extend({
 
     initialize: function () {
         this.render();
@@ -8,4 +8,9 @@ window.HomeView = Backbone.View.extend({
         $(this.el).html(this.template());
         return this;
     },
+ 
+    close: function(){
+      this.remove();
+      this.unbind();
+    }
 });

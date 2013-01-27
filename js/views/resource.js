@@ -1,4 +1,4 @@
-window.ProjectView = Backbone.DisposableView.extend({
+window.ResourceView = Backbone.DisposableView.extend({
 
     initialize: function () {
       this.render();
@@ -12,7 +12,7 @@ window.ProjectView = Backbone.DisposableView.extend({
     events: {
       "change"        :"change",
       "click .save"   :"beforeSave",
-      "click .delete" :"deleteProject"
+      "click .delete" :"deleteResource"
     },
 
     change: function (event) {
@@ -23,7 +23,6 @@ window.ProjectView = Backbone.DisposableView.extend({
         var target = event.target;
         var change = {};
         change[target.name] = target.value;
-        console.log(change);
         this.model.set(change);
 
         // Run validation rule (if any) on changed item
@@ -42,17 +41,17 @@ window.ProjectView = Backbone.DisposableView.extend({
         utils.displayValidationErrors(check.messages);
         return false;
       }
-      this.saveProject();
+      this.saveResource();
       return false;
     },
 
-    saveProject: function () {
+    saveResource: function () {
         var self = this;
         this.model.save(null, {
             success: function (model) {
                 self.render();
-                app.navigate('projects/' + model.id, false);
-                utils.showAlert('Success!', 'Project saved successfully', 'alert-success');
+                app.navigate('resources/' + model.id, false);
+                utils.showAlert('Success!', 'Resource saved successfully', 'alert-success');
             },
             error: function () {
                 utils.showAlert('Error', 'An error occurred while trying to create this item', 'alert-error');
@@ -60,11 +59,11 @@ window.ProjectView = Backbone.DisposableView.extend({
         });
     },
 
-    deleteProject: function () {
+    deleteResource: function () {
       $('#confirmDelete').modal('hide');
       this.model.destroy({
         success: function () {
-          alert('Project deleted successfully');
+          alert('Resource deleted successfully');
           window.history.back();
         }
       });

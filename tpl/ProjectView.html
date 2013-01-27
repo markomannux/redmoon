@@ -1,27 +1,65 @@
 <form>
   <fieldset>
     <legend>
-      <@= id? code: 'New Project'@>
+    <@ if (id) { @> 
+    <@= code @>
+
+<div class="btn-group">
+  <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+    Action
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a tabindex="-1" href="#projects/<@= id @>/resources/assign">Assign resources</a></li>
+  </ul>
+</div>
+
+    <@ } else { @> 
+      New Project
+    <@ } @>
     </legend>
+    <@ if (!id) { @>
     <label>Project code</label>
-    <@ if (id) {@>
     <input type="text" name="code" placeholder="example: PRJ-01" value="<@= code @>"/>
-    <@ }@>
     <span class="help-block">Unique project identifier</span>
+    <@ } @>
     <label>Project name</label>
     <input type="text" name="name" value="<@= name @>"/>
+    <label>Budget</label>
+    <div class="input-prepend">
+      <span class="add-on">€</span>
+      <input class="span2" name="budget" type="text" value="<@= budget@>">
+    </div>
     <label>Project description</label>
-    <textarea rows="6" name="description" value="<@= description @>"></textarea>
+    <textarea rows="6" name="description"><@= description @></textarea>
     <div>
-      <a href="#" class="btn btn-primary save">Create</a>
+      <a href="#" class="btn btn-primary save">Save</a>
+      <@ if (id) { @>
+      <a href="#confirmDelete" class="btn" data-toggle="modal">Delete</a>
+      <@ } @>
       <a href="#projects">Cancel</a>
     </div>
   </fieldset>
 </form>
+
 <div class="row status-bar">
     <div class="span12">
         <div class="alert alert-success" style="display: none">
-            <b>Success!</b> Wine saved successfully
+            <b>Success!</b> Project saved successfully
         </div>
     </div>
+</div>
+
+<div id="confirmDelete" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Delete Project</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure?</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Ooops! No...</button>
+    <button class="btn btn-danger delete">Yes</button>
+  </div>
 </div>

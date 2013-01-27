@@ -1,33 +1,28 @@
-window.ProjectsListView = Backbone.DisposableView.extend({
+window.ResourcesListView = Backbone.DisposableView.extend({
 
     initialize: function () {
         this.render();
     },
 
     render: function () {
-        var projects = this.model.models;
-        var len = projects.length;
+        var resources = this.model.models;
+        var len = resources.length;
         var startPos = (this.options.page - 1) * 8;
         var endPos = Math.min(startPos + 8, len);
 
         $(this.el).html(this.template(this.model.toJSON()));
 
         for (var i = startPos; i < endPos; i++) {
-            $('.thumbnails', this.el).append(new ProjectsListItemView({model: projects[i]}).render().el);
+            $('.thumbnails', this.el).append(new ResourcesListItemView({model: resources[i]}).render().el);
         }
 
-        this.paginator = new Paginator({model: this.model, page: this.options.page});
-        $(this.el).append(this.paginator.render().el);
+        $(this.el).append(new Paginator({model: this.model, page: this.options.page}).render().el);
 
         return this;
-    },
-
-    dispose: function(){
-      this.paginator.dispose();
     }
 });
 
-window.ProjectsListItemView = Backbone.DisposableView.extend({
+window.ResourcesListItemView = Backbone.DisposableView.extend({
 
     tagName: "li",
 
@@ -43,7 +38,7 @@ window.ProjectsListItemView = Backbone.DisposableView.extend({
         return this;
     },
 
-    dispose: function(){
+    close: function(){
       this.model.unbind("change", this.render);
       this.model.unbind("destroy", this.close);
     }
